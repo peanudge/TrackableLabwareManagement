@@ -1,20 +1,26 @@
 ﻿namespace LabwareManagement.Domain;
 
+public enum LabwareUseStatus
+{
+    Unused = 1,
+    InUse = 2,
+}
+
+
+// Labware is state machine, Labware move from one status to another through life cycle of the lab.
 public class Labware
 {
-    private string Barcode { get; init; }
+    private LabwareUseStatus _status;
 
-    public Labware(string barcode = "")
+    public LabwareUseStatus UseStatus => _status;
+
+    public Labware()
     {
-        if (barcode is null)
-        {
-            throw new ArgumentNullException(nameof(barcode));
-        }
-        Barcode = barcode;
+        _status = LabwareUseStatus.Unused;
     }
 
-    public new string ToString()
+    public void StartToUse()
     {
-        return $"Labware(barcode: {Barcode})";
+        _status = LabwareUseStatus.InUse;
     }
 }
