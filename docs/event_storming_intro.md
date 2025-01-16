@@ -53,13 +53,13 @@ the verb must be in the past tense, indicating that something has happened and i
 e.g. `Customer Paid by card`, `Order Confirmed`
 
 <p align="center">
-  <img src="./event_storming_example_simple.png" width="300" height="150" />
+  <img src="./event_storming_example_simple.png" />
 </p>
 
 > Events are placed on the timeline
 
 <p align="center">
-  <img src="./event_storming_example_with_timeline.png" width="500" height="250" />
+  <img src="./event_storming_example_with_timeline.png" />
 </p>
 
 It is quite logical because facts represent subsequent changes in the system and therefore happen in a particular order.
