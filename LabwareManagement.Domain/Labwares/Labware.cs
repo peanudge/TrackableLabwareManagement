@@ -1,24 +1,9 @@
 ﻿namespace LabwareManagement.Domain;
 
-public enum LabwareUseStatus
-{
-    Unused = 1,
-    InUse = 2,
-}
-
 public class Labware
 {
-    private LabwareUseStatus _status;
-
-    public LabwareUseStatus UseStatus => _status;
-
-    public Labware()
-    {
-        _status = LabwareUseStatus.Unused;
-    }
-
-    public void StartToUse()
-    {
-        _status = LabwareUseStatus.InUse;
-    }
+    public Guid Id { get; private set; }
+    private string _barcode = string.Empty;
+    private string _description = string.Empty;
+    private double _volume = 0.0;
 }
