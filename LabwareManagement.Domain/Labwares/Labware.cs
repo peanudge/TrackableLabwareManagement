@@ -13,11 +13,11 @@ public class Labware
         Id = id;
     }
 
+    public void SetBarcode(string barcode) => _barcode = barcode; // Bad smell: Just property setter
+    public void UpdateDescription(string description) => _description = description; // Bad smell: Just property setter
+    public void UpdateVolume(double volume) => _volume = volume; // Bad smell: Just property setter
 
-    private Guid? _ownerId = null;
     private string _barcode = string.Empty;
     private string _description = string.Empty;
     private double _volume = 0.0;
-
-
 }

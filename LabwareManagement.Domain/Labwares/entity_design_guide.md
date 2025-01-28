@@ -34,6 +34,14 @@ Such an ID can be generated using **the current time and some information about 
 
 When using GUIDs, we can generate identities for objects before touching any infrastructure! and therefore create references to an object that only exist in memory.
 
-## Shall try to encapsulate as much as we can
+# Shall try to encapsulate as much as we can
 
 Keep our internals safe and preferably invisible to outside world.
+
+# Behavior First Design
+
+Remember, we need to design behavior-first. The only reason for us to add those `private` fields to the entity was actually to support the behavior.
+
+Encapsulation being enforced, we shall not allow manipulating the entity state by changing property values from outside the entity. This will lead us to the dusty land of CRUD.
+
+Ffind out how methods that express behavior can become more useful.
