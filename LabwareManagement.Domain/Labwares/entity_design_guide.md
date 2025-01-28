@@ -33,3 +33,7 @@ We will use one reliable method and identity type -- a globally unique identifie
 Such an ID can be generated using **the current time and some information about the computer, where it is produced.**
 
 When using GUIDs, we can generate identities for objects before touching any infrastructure! and therefore create references to an object that only exist in memory.
+
+## Shall try to encapsulate as much as we can
+
+Keep our internals safe and preferably invisible to outside world.
