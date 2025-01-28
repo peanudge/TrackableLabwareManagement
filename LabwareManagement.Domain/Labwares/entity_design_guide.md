@@ -44,4 +44,64 @@ Remember, we need to design behavior-first. The only reason for us to add those 
 
 Encapsulation being enforced, we shall not allow manipulating the entity state by changing property values from outside the entity. This will lead us to the dusty land of CRUD.
 
-Ffind out how methods that express behavior can become more useful.
+```cs
+public class Labware
+{
+    public Guid Id { get; }
+
+    public Labware(Guid id)
+    {
+        if (id == default)
+        {
+            throw new ArgumentException("Identity must be specified", nameof(id));
+        }
+        Id = id;
+    }
+
+    public void SetBarcode(string barcode) => _barcode = barcode; // Bad smell: Just property setter
+    public void UpdateDescription(string description) => _description = description; // Bad smell: Just property setter
+    public void UpdateVolume(double volume) => _volume = volume; // Bad smell: Just property setter
+
+    private string _barcode = string.Empty;
+    private string _description = string.Empty;
+    private double _volume = 0.0;
+}
+```
+
+Above code represents just property setters. (method's name is just only ubiqutous language)
+
+Find out how methods that express behavior can become more useful.
+
+# Ensure Correctness
+
+Checking entity constructor parameter to be valid to ensure the newly created entity object is also correct.
+
+The ultimate control is always performed inside the domain model itself, since it shall never come to an invalid state.
+
+```cs
+public class Labware {
+    public Labware(Guid id, string barcode)
+    {
+        if (id == default)
+        {
+            throw new ArgumentException("Identity must be specified", nameof(id));
+        }
+
+        if (string.IsNullOrWhiteSpace(barcode))
+        {
+            throw new ArgumentException("Barcode must be specified", nameof(barcode));
+        }
+
+        Id = id;
+        _barcode = barcode;
+    }
+}
+```
+
+Adding more parameters to the entity constructor, and **the constructor itself grows** since we add more checks for these parameters.
+
+This approach is not wrong but is also not ideal.
+
+Instead,
+
+We can check the validity of such values, even before reaching the entity constructor, using **value objects.**
