@@ -2,22 +2,13 @@
 
 public class Labware
 {
-    public Guid Id { get; }
+    private LabwareId Id { get; }
+    private UserId _ownerId;
 
-    public Labware(Guid id, string barcode)
+    public Labware(LabwareId id, UserId ownerId)
     {
-        if (id == default)
-        {
-            throw new ArgumentException("Identity must be specified", nameof(id));
-        }
-
-        if (string.IsNullOrWhiteSpace(barcode))
-        {
-            throw new ArgumentException("Barcode must be specified", nameof(barcode));
-        }
-
         Id = id;
-        _barcode = barcode;
+        _ownerId = ownerId;
     }
 
     public void SetBarcode(string barcode) => _barcode = barcode; // Bad smell: Just property setter

@@ -105,3 +105,34 @@ This approach is not wrong but is also not ideal.
 Instead,
 
 We can check the validity of such values, even before reaching the entity constructor, using **value objects.**
+
+# Value Object
+
+It is most popular in DDD community. It probably happened due to such characteristics of value objects as **expressiveness and strong encapsulation.**
+
+Fundamentally, value objects allow declaring entity properties with explicit types that use Ubiquitous Language.
+
+It is a perfect example about `making Implicit to Explicity`.
+
+```csharp
+public class Labware {
+    private LabwareId Id {get;}
+    private UserId _ownerId;
+    public Labware(LabwareId id, UserId ownerId)
+    {
+        Id = id;
+        _ownerId = ownerId;
+    }
+}
+
+
+var item = new Labware(
+    new LabwareId(Guid.NewGuid()),
+    new UserId(Guid.NewGuid())
+    );
+```
+
+Strongly typed parameters of value object types force the compiler to engage type checking.
+if we messed up arguments, the code won't compile.
+
+But, value object aren't just value wrapper types around primitive types.

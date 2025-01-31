@@ -6,41 +6,29 @@ public class LabwareTests
     public void ShouldCreateLabware()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var barcode = "1234567890";
+        var id = new LabwareId(Guid.NewGuid());
+        var ownerId = new UserId(Guid.NewGuid());
 
         // Act
         // Assert
-        _ = new Labware(id, barcode);
+        _ = new Labware(id, ownerId);
     }
 
     [Fact]
-    public void ShouldThrowBarcodeExceptionWhenCreateLabware()
+    public void ShouldThrowEmptyUserIdExceptionWhenCreateLabware()
     {
-        // Arrange
-        var id = Guid.NewGuid();
-        var barcode = string.Empty;
-
-        // Act
-        // Assert
         Assert.Throws<ArgumentException>(() =>
         {
-            var labware = new Labware(id, barcode);
+            new UserId(Guid.Empty);
         });
     }
 
     [Fact]
-    public void ShouldThrowIdExceptionWhenCreateLabware()
+    public void ShouldThrowEmptyLabwareIdExceptionWhenCreateLabware()
     {
-        // Arrange
-        var id = Guid.Empty;
-        var barcode = string.Empty;
-
-        // Act
-        // Assert
         Assert.Throws<ArgumentException>(() =>
         {
-            var labware = new Labware(id, barcode);
+            new LabwareId(Guid.Empty);
         });
     }
 }
