@@ -1,4 +1,6 @@
-﻿namespace LabwareManagement.Domain;
+﻿using LabwareManagementa.Domain;
+
+namespace LabwareManagement.Domain;
 
 public class Labware
 {
@@ -11,11 +13,11 @@ public class Labware
         _ownerId = ownerId;
     }
 
-    public void SetBarcode(string barcode) => _barcode = barcode; // Bad smell: Just property setter
+    public void SetBarcode(LabwareBarcode barcode) => _barcode = barcode;
+    public void UpdateVolume(LiquidVolume volume) => _volume = volume;
     public void UpdateDescription(string description) => _description = description; // Bad smell: Just property setter
-    public void UpdateVolume(double volume) => _volume = volume; // Bad smell: Just property setter
 
-    private string _barcode = string.Empty;
+    private LabwareBarcode? _barcode = null; // TODO: Apply Null Object Pattern
+    private LiquidVolume? _volume = null; // TODO: Apply Null Object Pattern
     private string _description = string.Empty;
-    private double _volume = 0.0;
 }
