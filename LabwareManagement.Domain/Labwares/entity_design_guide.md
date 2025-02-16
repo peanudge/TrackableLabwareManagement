@@ -136,3 +136,20 @@ Strongly typed parameters of value object types force the compiler to engage typ
 if we messed up arguments, the code won't compile.
 
 But, value object aren't just value wrapper types around primitive types.
+
+# Domain Service
+
+We can go for a dependency on some external service.
+but, we know that **domain models should not have external dependencies.**
+
+We should not put any implementation details inside domain model.
+
+It means that the only thing we are going to have inside the domain project is **domain service interface**.
+
+As example code, i will introduce domain service to check duplication of barcode. called `IBarcodeLookup`.
+
+```csharp
+public interface IBarcodeLookup {
+    public bool FindLabwareWithBarcode(LabwareBarcode barcode);
+}
+```
